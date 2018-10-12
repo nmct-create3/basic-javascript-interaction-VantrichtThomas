@@ -810,9 +810,9 @@ more padding on the right to avoid overlap
 
 .c-custom-input-option__symbol {
 	display: block;
-    opacity: 0; /* Hide the svg initially */
-    transform: scale(.5);
-    transition: all var(--transition-alpha);
+  opacity: 0; /* Hide the svg initially */
+  transform: scale(.5);
+  transition: all var(--transition-alpha);
 }
 
 .c-custom-input-option--checkbox .c-custom-input-option__symbol {
@@ -995,12 +995,12 @@ more padding on the right to avoid overlap
 
 .c-custom-select__symbol {
 	width: 24px;
-    height: 24px;
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    pointer-events: none;
-    fill: var(--color-neutral-x-light);
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  pointer-events: none;
+  fill: var(--color-neutral-x-light);
 }
 
 /*
@@ -1063,7 +1063,6 @@ Password toggle custom checkbox
 .c-range {
   display: block;
   height: 8px;
-  width: calc(100%-18px);
   padding: 0;
   border-radius: 8px;
   background-color: var(--color-neutral-xxxx-light);
@@ -1071,23 +1070,102 @@ Password toggle custom checkbox
 }
 
 .c-range-holder {
+  max-width: calc( 100% - 18px );
   border-radius: 3px;
   background-color: var(--color-neutral-xxxx-light);
+  display: inline-block;
+  margin-top: 12px;
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+
+  transform: scale(0);
+  transition: transform 200ms ease-in-out;
+  transform-origin: center top;
 }
 
 .c-range-holder::after {
   content: attr(data-value);
   display: inline-block;
   width: 32px;
-  margin-top: 12px;
   padding: 4px;
   font-size: .8rem;
   text-align: center;
   border-radius: 4px;
   background: var(--color-neutral-xxxx-light);
+}
+
+.c-range:focus + .c-range-holder {
+  transform: scale(1);
+}
+
+/*
+	Component: Dropdown
+	---
+	Custom like button
+*/
+
+.c-dropdown {
+  display: block;
+  position: relative;
+}
+
+.c-dropdown__input {
+  text-align: left;
+  width: 120px;
+  position: relative;
+}
+
+.c-dropdown__symbol {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  pointer-events: none;
+  fill: var(--color-neutral-x-light);
+
+  -webkit-transition: transform 0.5s;
+  -o-transition: transform 0.5s;
+  transition: transform 0.5s;
+}
+
+.js-dropdown-input .c-dropdown__symbol {
+  -webkit-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  fill: var(--color-neurtral-dark);
+}
+
+.c-dropdown__list {
   transform: scale(0);
   transition: transform 200ms ease-in-out;
   transform-origin: center top;
+
+  position: absolute;
+  top: 48px;
+  width: 120px;
+
+}
+
+.js-dropdown-input + .c-dropdown__list {
+  transform: scale(1);
+}
+
+.c-dropdown__button {
+  text-align: left;
+  width: 120px;
+  position: relative;
+}
+
+.c-dropdown__button-symbol {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  pointer-events: none;
+  fill: var(--color-neutral-x-light);
 }
 
 /*
@@ -1096,6 +1174,50 @@ Password toggle custom checkbox
 	Custom like button
 */
 
+.c-like {
+
+}
+
+.c-like__input {
+
+}
+
+.c-like__label {
+  width: 24px;
+  height: 24px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.c-like__symbol {
+  width: 100%;
+  height: 100%;
+  fill: #D80027;
+}
+
+.c-like__symbol:active {
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes bounce {
+  0%, 20%, 50% {width: 100%;}
+  40% {width: 70%;}
+  60% {width: 90%;}
+  100% {width: 80%;}
+}
+
+@keyframes bounce {
+  0%, 20%, 50% {width: 100%;}
+  40% {width: 70%;}
+  60% {width: 90%;}
+  100% {width: 80%;}
+}
 
 /*------------------------------------*\
 #UTILITIES

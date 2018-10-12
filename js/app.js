@@ -2,6 +2,7 @@ document.addEventListener( 'DOMContentLoaded', function() {
     handleFloatingLabel();
     handlePasswordSwitcher();
     handleQualityRange();
+    handleDropdownButton()
 });
 
 function handleFloatingLabel() {
@@ -14,7 +15,6 @@ function handleFloatingLabel() {
 }
 
 function handleInputBlur(e) {
-  console.log(e.target.value);
   // Indien de input niet meer leeg is, dan voegen we de class 'is-floating' toe
   if (e.target.value != '') {
     e.target.classList.add('is-floating');
@@ -65,7 +65,27 @@ function handleQualityRange() {
 function sliderChange(e) {
   // Aanpassen inhoud van de value aan met de value van de slider en voeren we een translateX uit op de holder.
   let holder = document.querySelector(".js-range-holder");
-  holder.blabla = e.target.value;
-  console.log(holder.blabla);
-  holder.style.translateX = holder.value + "px";
+  let rangeSlider = document.querySelector(".js-quality-input");
+  holder.dataset.value = e.target.value;
+  let x = rangeSlider.offsetWidth/rangeSlider.max * holder.dataset.value;
+  holder.style.marginLeft = x-8 +"px";
+
+  // holder.setAttribute("style", "-ms-transform: translateX(" + x +"px);transform: translateX("+ x +"px);-webkit-transform: translateX("+ x +"px); scale(1)");
+  // holder.dataset.value + "
+}
+
+
+function handleDropdownButton() {
+  // de input zelf, de holder en de value
+  let dropdowns = document.querySelectorAll(".c-dropdown__input");
+
+  for (let i = 0; i < dropdowns.length; i++) {
+    dropdowns[i].addEventListener('click', dropdownClicked);
+  }
+}
+
+function dropdownClicked(e) {
+  e.preventDefault();
+
+  e.target.classList.toggle("js-dropdown-input");
 }
